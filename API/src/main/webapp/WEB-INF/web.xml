@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
     <servlet>
-        <servlet-name>Skeleton API</servlet-name>           <!--TODO: Servlet name-->
+        <servlet-name>Scheduler</servlet-name>
         <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
             <param-value>io.swagger.jaxrs.listing,
                 org.endeavourhealth.coreui.endpoints,
-                org.endeavourhealth.skeleton.api.endpoints  <!--TODO: Application endpoints path-->
+                org.endeavourhealth.scheduler.api.endpoints
             </param-value>
         </init-param>
         <init-param>
@@ -19,7 +19,7 @@
                 io.swagger.jaxrs.listing.ApiListingResource,
                 io.swagger.jaxrs.listing.SwaggerSerializers,
                 org.endeavourhealth.common.security.CustomRolesAllowedFeature,
-                org.endeavourhealth.skeleton.api.framework.exceptions.BaseExceptionMapper
+                org.endeavourhealth.scheduler.api.framework.exceptions.BaseExceptionMapper
             </param-value>
         </init-param>
 
@@ -33,7 +33,7 @@
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>Skeleton API</servlet-name>         <!--TODO: Servlet name-->
+        <servlet-name>Scheduler</servlet-name>
         <url-pattern>/api/*</url-pattern>
     </servlet-mapping>
 
@@ -62,7 +62,7 @@
     <!-- startup class, initializes config manager -->
     <context-param>
         <param-name>app_id</param-name>
-        <param-value>eds-ui</param-value>                           <!--TODO: Tool config id-->
+        <param-value>scheduler-ui</param-value>
     </context-param>
     <listener>
         <listener-class>
@@ -75,7 +75,7 @@
     <!-- ============================================ -->
     <servlet>
         <servlet-name>swaggerBootstrap</servlet-name>
-        <servlet-class>org.endeavourhealth.skeleton.api.framework.SwaggerBootstrap</servlet-class>
+        <servlet-class>org.endeavourhealth.scheduler.api.framework.SwaggerBootstrap</servlet-class>
         <load-on-startup>2</load-on-startup>
     </servlet>
 
@@ -157,10 +157,10 @@
     </filter-mapping>
 
     <listener>
-        <listener-class>org.endeavourhealth.skeleton.api.metrics.TemplateMetricListener</listener-class>    <!--TODO: Metrics listener-->
+        <listener-class>org.endeavourhealth.scheduler.api.metrics.SchedulerMetricListener</listener-class>
     </listener>
     <listener>
-        <listener-class>org.endeavourhealth.skeleton.api.metrics.TemplateInstrumentedFilterContextListener</listener-class> <!--TODO: Metrics filter -->
+        <listener-class>org.endeavourhealth.scheduler.api.metrics.SchedulerInstrumentedFilterContextListener</listener-class>
     </listener>
     <servlet>
         <servlet-name>metrics</servlet-name>
@@ -177,7 +177,7 @@
         <filter-class>com.codahale.metrics.servlet.InstrumentedFilter</filter-class>
         <init-param>
             <param-name>name-prefix</param-name>
-            <param-value>EDS-UI</param-value>       <!--TODO: Filter prefix-->
+            <param-value>SCHEDULER-UI</param-value>
         </init-param>
     </filter>
     <filter-mapping>

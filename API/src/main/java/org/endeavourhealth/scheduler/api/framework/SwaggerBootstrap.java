@@ -1,4 +1,4 @@
-package org.endeavourhealth.skeleton.api.framework;
+package org.endeavourhealth.scheduler.api.framework;
 
 import com.codahale.metrics.jvm.*;
 import io.swagger.jaxrs.config.SwaggerContextService;
@@ -6,7 +6,7 @@ import io.swagger.models.Info;
 import io.swagger.models.Swagger;
 import io.swagger.models.auth.OAuth2Definition;
 import org.endeavourhealth.coreui.framework.config.ConfigService;
-import org.endeavourhealth.skeleton.api.metrics.TemplateInstrumentedFilterContextListener;
+import org.endeavourhealth.scheduler.api.metrics.SchedulerInstrumentedFilterContextListener;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -17,8 +17,8 @@ public class SwaggerBootstrap extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
         Info info = new Info()
-                .title("Skeleteon API")                                       // TODO: Swagger title
-                .description("Documentation for the skeleton api ");          // TODO: Swagger description
+                .title("Scheduler API")
+                .description("Documentation for the scheduler api ");
 
         System.out.println("API is running!!!");
 
@@ -33,10 +33,10 @@ public class SwaggerBootstrap extends HttpServlet {
                 );
         new SwaggerContextService().withServletConfig(config).updateSwagger(swagger);
 
-        TemplateInstrumentedFilterContextListener.REGISTRY.register("Garbage Collection", new GarbageCollectorMetricSet());
-        TemplateInstrumentedFilterContextListener.REGISTRY.register("Buffers", new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
-        TemplateInstrumentedFilterContextListener.REGISTRY.register("Memory", new MemoryUsageGaugeSet());
-        TemplateInstrumentedFilterContextListener.REGISTRY.register("Threads", new ThreadStatesGaugeSet());
-        TemplateInstrumentedFilterContextListener.REGISTRY.register("File Descriptor", new FileDescriptorRatioGauge());
+        SchedulerInstrumentedFilterContextListener.REGISTRY.register("Garbage Collection", new GarbageCollectorMetricSet());
+        SchedulerInstrumentedFilterContextListener.REGISTRY.register("Buffers", new BufferPoolMetricSet(ManagementFactory.getPlatformMBeanServer()));
+        SchedulerInstrumentedFilterContextListener.REGISTRY.register("Memory", new MemoryUsageGaugeSet());
+        SchedulerInstrumentedFilterContextListener.REGISTRY.register("Threads", new ThreadStatesGaugeSet());
+        SchedulerInstrumentedFilterContextListener.REGISTRY.register("File Descriptor", new FileDescriptorRatioGauge());
     }
 }

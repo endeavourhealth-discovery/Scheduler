@@ -1,4 +1,4 @@
-package org.endeavourhealth.skeleton.api.json;
+package org.endeavourhealth.scheduler.api.json;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

@@ -1,6 +1,6 @@
-package org.endeavourhealth.skeleton.api.logic;
+package org.endeavourhealth.scheduler.api.logic;
 
-import org.endeavourhealth.skeleton.api.dal.TemplateDAL_Mock;
+import org.endeavourhealth.scheduler.api.dal.TemplateDAL_Mock;
 import org.junit.Before;
 import org.junit.Test;
 

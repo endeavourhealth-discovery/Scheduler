@@ -1,8 +1,8 @@
-package org.endeavourhealth.skeleton.api.framework.exceptions;
+package org.endeavourhealth.scheduler.api.framework.exceptions;
 
 import org.endeavourhealth.coreui.endpoints.AbstractEndpoint;
 import org.endeavourhealth.coreui.framework.exceptions.MappedException;
-import org.endeavourhealth.skeleton.api.json.JsonServerException;
+import org.endeavourhealth.scheduler.api.json.JsonServerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

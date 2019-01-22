@@ -8,12 +8,12 @@ import {Routes} from '@angular/router';
 export class AppMenuService implements  AbstractMenuProvider {
   static getRoutes(): Routes {
     return [
-      { path: '', redirectTo : 'skeleton', pathMatch: 'full' }, // Default route
-      {path: 'skeleton', component: SettingsComponent}
+      { path: '', redirectTo : 'scheduler', pathMatch: 'full' }, // Default route
+      {path: 'scheduler', component: SettingsComponent}
     ];
   }
   getApplicationTitle(): string {
-    return 'Skeleton tool';             // TODO: Tool title
+    return 'Scheduler';
   }
 
   getClientId(): string {

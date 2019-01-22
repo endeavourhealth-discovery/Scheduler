@@ -1,6 +1,6 @@
-package org.endeavourhealth.skeleton.api.dal;
+package org.endeavourhealth.scheduler.api.dal;
 
-public class TemplateDAL_Mock implements TemplateDAL {
+public class TemplateDAL_Mock implements SchedulerDAL {
     public boolean getGreetingCalled = false;
     @Override
     public String getGreeting() {
