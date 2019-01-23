@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MessageBoxDialog} from 'eds-angular4';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SchedulerService} from './scheduler.service';
+import {Extract} from "./models/Extract";
 
 @Component({
   selector: 'app-record-viewer',
@@ -10,8 +11,8 @@ import {SchedulerService} from './scheduler.service';
 })
 export class SchedulerComponent implements OnInit {
 
-  tableData: any[];
-  selection: any;
+  tableData: Extract[];
+  selection: Extract;
 
   constructor(private modal: NgbModal,
               private service: SchedulerService) { }
