@@ -34,6 +34,12 @@
             <artifactId>security</artifactId>
             <version>${eds-security.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.endeavourhealth.datagenerator</groupId>
+            <artifactId>scheduler</artifactId>
+            <version>${eds-datagenerator.scheduler.version}</version>
+        </dependency>
         <!-- End Common -->
 
         <!-- Jersey -->

@@ -9,9 +9,16 @@ export class SettingsService {
 
   getMessage(name: string): Observable<string> {
     const params = new URLSearchParams();
-    params.append('name', name);
 
     return this.http.get('/api/scheduler/list', {search: params})
       .map((result) => result.text());
   }
+
+  getList(): Observable<any[]> {
+    const params = new URLSearchParams();
+
+    return this.http.get('/api/scheduler/list', {search: params})
+      .map((response) => response.json());
+  }
+
 }
