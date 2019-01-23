@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageBoxDialog} from 'eds-angular4';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {SettingsService} from './settings.service';
+import {SchedulerService} from './scheduler.service';
 
 @Component({
   selector: 'app-record-viewer',
-  templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.css']
+  templateUrl: './scheduler.component.html',
+  styleUrls: ['./scheduler.component.css']
 })
-export class SettingsComponent implements OnInit {
+export class SchedulerComponent implements OnInit {
 
   tableData: any[];
   selection: any;
 
   constructor(private modal: NgbModal,
-              private service: SettingsService) { }
+              private service: SchedulerService) { }
 
   ngOnInit() {
     this.service.getList()

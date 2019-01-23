@@ -3,7 +3,7 @@ import {URLSearchParams, Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 
 @Injectable()
-export class SettingsService {
+export class SchedulerService {
 
   constructor(private http: Http) { }
 

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { SettingsComponent } from './settings/settings.component';
+import { SchedulerComponent } from './scheduler/scheduler.component';
 import {DialogsModule, LoggerService} from 'eds-angular4';
 import {CommonModule} from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {SettingsService} from './settings/settings.service';
+import {SchedulerService} from './scheduler/scheduler.service';
 
 @NgModule({
   imports: [
@@ -11,7 +11,7 @@ import {SettingsService} from './settings/settings.service';
     DialogsModule,
     NgbModule
   ],
-  declarations: [SettingsComponent],
-  providers: [SettingsService, LoggerService]
+  declarations: [SchedulerComponent],
+  providers: [SchedulerService, LoggerService]
 })
-export class SettingsModule { }
+export class SchedulerModule { }

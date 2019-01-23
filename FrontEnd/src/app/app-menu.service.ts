@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AbstractMenuProvider} from 'eds-angular4';
 import {MenuOption} from 'eds-angular4/dist/layout/models/MenuOption';
-import {SettingsComponent} from './settings/settings/settings.component';
+import {SchedulerComponent} from './scheduler/scheduler/scheduler.component';
 import {Routes} from '@angular/router';
 
 @Injectable()
@@ -9,7 +9,7 @@ export class AppMenuService implements  AbstractMenuProvider {
   static getRoutes(): Routes {
     return [
       { path: '', redirectTo : 'scheduler', pathMatch: 'full' }, // Default route
-      {path: 'scheduler', component: SettingsComponent}
+      {path: 'scheduler', component: SchedulerComponent}
     ];
   }
   getApplicationTitle(): string {
