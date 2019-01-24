@@ -1,6 +1,5 @@
 package org.endeavourhealth.scheduler.api.logic;
 
-import org.endeavourhealth.common.config.ConfigManagerException;
 import org.endeavourhealth.scheduler.api.dal.SchedulerDAL_JDBC;
 import org.endeavourhealth.scheduler.api.dal.SchedulerDAL;
 import org.endeavourhealth.scheduler.models.database.ExtractEntity;
@@ -19,15 +18,12 @@ public class SchedulerLogic {
         }
     }
 
-    public SchedulerLogic(SchedulerDAL dal) {
-        this.dal = dal;
-    }
-
-    public String getMessage(String name) {
-        return dal.getGreeting() + " " + name;
-    }
-
     public List<ExtractEntity> getAllExtracts() {
         return dal.getAllExtracts();
     }
+
+    public void deleteExtract(String id) {
+        dal.deleteExtract(id);
+    }
+
 }

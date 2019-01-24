@@ -5,8 +5,8 @@ import org.endeavourhealth.scheduler.models.database.ExtractEntity;
 
 public interface SchedulerDAL {
 
-    String getGreeting();
-
     List<ExtractEntity> getAllExtracts();
+
+    void deleteExtract(String id);
 
 }

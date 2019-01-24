@@ -13,11 +13,6 @@ public class SchedulerDAL_JDBC implements SchedulerDAL {
     }
 
     @Override
-    public String getGreeting() {
-        return "Hello";
-    }
-
-    @Override
     public List<ExtractEntity> getAllExtracts() {
         try {
             List<ExtractEntity> allExtracts = ExtractEntity.getAllExtracts();
@@ -26,5 +21,14 @@ public class SchedulerDAL_JDBC implements SchedulerDAL {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void deleteExtract(String id) {
+        try {
+            ExtractEntity.deleteExtract(Integer.valueOf(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

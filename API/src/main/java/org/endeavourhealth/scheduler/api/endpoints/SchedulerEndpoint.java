@@ -22,29 +22,10 @@ public class SchedulerEndpoint {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.Message.Get") // metrics name <application>.<endpoint>.<path>.<method>
-    @Path("/message")
-    @ApiOperation(value = "Returns a list of all concepts") // operation description
-    public Response get(@Context SecurityContext sc,
-                        @ApiParam(value = "Mandatory name") @QueryParam("name") String name
-    ) {
-        System.out.println("Get Called");
-
-        String result = new SchedulerLogic().getMessage(name);
-
-        return Response
-            .ok(result)
-            .build();
-    }
-
-
-    @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.List.Get") // metrics name <application>.<endpoint>.<path>.<method>
-    @Path("/list")
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.Get.Get") // metrics name <application>.<endpoint>.<path>.<method>
+    @Path("/get")
     @ApiOperation(value = "Returns a list of all extracts") // operation description
-    public Response list(@Context SecurityContext sc) {
+    public Response get(@Context SecurityContext sc) {
 
         System.out.println("List Called");
 
@@ -52,6 +33,25 @@ public class SchedulerEndpoint {
 
         return Response
                 .ok(result)
+                .build();
+    }
+
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.Delete")
+    @Path("/")
+    @ApiOperation(value = "Delete an extract based on id that is passed to the API.  Warning! This is permanent.")
+    public Response deleteExtract(@Context SecurityContext sc,
+                                  @ApiParam(value = "ID of the extract to be deleted")
+                                  @QueryParam("id") String id) throws Exception {
+
+        System.out.println("Delete Called");
+
+        new SchedulerLogic().deleteExtract(id);
+
+        return Response
+                .ok()
                 .build();
     }
 }

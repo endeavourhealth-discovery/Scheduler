@@ -9,10 +9,15 @@ export class SchedulerService {
   constructor(private http: Http) { }
 
   getList(): Observable<Extract[]> {
-    const params = new URLSearchParams();
-
-    return this.http.get('/api/scheduler/list', {search: params})
+    return this.http.get('/api/scheduler/get')
       .map((response) => response.json());
+  }
+
+  deleteExtract(id: any): Observable<any> {
+    const params = new URLSearchParams();
+    params.set('id', id);
+    return this.http.delete('api/scheduler', { search : params })
+      .map((response) => response.text());
   }
 
 }
