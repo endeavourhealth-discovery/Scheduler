@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {LoggerService, MessageBoxDialog} from 'eds-angular4';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SchedulerService} from './scheduler.service';
 import {Extract} from "./models/Extract";
+import {ToastsManager} from 'ng2-toastr';
 
 @Component({
   selector: 'app-record-viewer',
@@ -16,7 +17,10 @@ export class SchedulerComponent implements OnInit {
 
   constructor(private modal: NgbModal,
               private log: LoggerService,
-              private service: SchedulerService) { }
+              private service: SchedulerService,
+              public toastr: ToastsManager, vcr: ViewContainerRef) {
+    this.toastr.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {
     this.service.getList()
@@ -30,9 +34,6 @@ export class SchedulerComponent implements OnInit {
             this.selection = this.extracts[0];
           }
         },
-        error => {
-          (error) => console.error(error);
-        }
       );
   }
 

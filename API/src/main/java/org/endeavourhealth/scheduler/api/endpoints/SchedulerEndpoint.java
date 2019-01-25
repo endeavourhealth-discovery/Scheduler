@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.endeavourhealth.scheduler.api.logic.SchedulerLogic;
 import org.endeavourhealth.scheduler.models.database.ExtractEntity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Context;
@@ -19,15 +21,17 @@ import java.util.List;
 @Api(description = "Api for all calls relating to the Scheduler")
 public class SchedulerEndpoint {
 
+    private static final Logger LOG = LoggerFactory.getLogger(SchedulerEndpoint.class);
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.Get.Get") // metrics name <application>.<endpoint>.<path>.<method>
     @Path("/get")
     @ApiOperation(value = "Returns a list of all extracts") // operation description
-    public Response get(@Context SecurityContext sc) {
+    public Response get(@Context SecurityContext sc) throws Exception {
 
-        System.out.println("List Called");
+        LOG.debug("Get All Extracts Called");
 
         List<ExtractEntity> result = new SchedulerLogic().getAllExtracts();
 
@@ -46,7 +50,7 @@ public class SchedulerEndpoint {
                                   @ApiParam(value = "ID of the extract to be deleted")
                                   @QueryParam("id") String id) throws Exception {
 
-        System.out.println("Delete Called");
+        LOG.debug("Delete Extract called");
 
         new SchedulerLogic().deleteExtract(id);
 
