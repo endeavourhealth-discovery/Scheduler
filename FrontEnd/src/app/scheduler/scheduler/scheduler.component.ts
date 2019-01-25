@@ -13,7 +13,9 @@ import {ToastsManager} from 'ng2-toastr';
 export class SchedulerComponent implements OnInit {
 
   extracts: Extract[];
+  filteredExtracts : Extract[];
   selection: Extract;
+  searchTerm: string;
 
   constructor(private modal: NgbModal,
               private log: LoggerService,
@@ -32,6 +34,7 @@ export class SchedulerComponent implements OnInit {
             val = this.extracts[i].definition;
             this.extracts[i].definition = JSON.parse(val);
             this.selection = this.extracts[0];
+            this.filteredExtracts = this.extracts;
           }
         },
       );
@@ -55,6 +58,18 @@ export class SchedulerComponent implements OnInit {
         },
         (error) => this.log.error('The extract could not be deleted. Please try again.', error, 'Delete extract')
       );
+  }
+
+  searchExtracts() {
+    this.filteredExtracts = this.extracts;
+    this.filteredExtracts = this.filteredExtracts.filter(
+      extract => extract.extractName.includes(this.searchTerm) || extract.definition.name.includes(this.searchTerm)
+    );
+  }
+
+  clearSearch() {
+    this.searchTerm = '';
+    this.filteredExtracts = this.extracts;
   }
 
 }

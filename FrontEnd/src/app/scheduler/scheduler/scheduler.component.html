@@ -26,11 +26,13 @@
                   <div class="form-group">
                     <label class="form-control-label">Search</label>
                     <div class="input-group">
-                      <input type="text" class="form-control">
-                      <span class="input-group-append">
-                        <em class="fa fa-search input-group-text"></em>
-                        <em class="fa fa-times input-group-text"></em>
-                      </span>
+                      <input class="form-control" type="text" [(ngModel)]="searchTerm" (keyup)="searchExtracts()" name="searchTerm" placeholder="Search term..." #searchBox>
+                      <span class="input-group-append" (click)="searchExtracts()">
+                          <em class="fa fa-search input-group-text" title="Search"></em>
+                        </span>
+                      <span class="input-group-append" (click)="clearSearch()">
+                          <em class="fa fa-remove input-group-text" title="Clear search"></em>
+                         </span>
                     </div>
                   </div>
 
@@ -49,7 +51,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <tr class="d-flex show-child-on-hover" *ngFor="let extract of extracts" (click)="selection = extract" [class.selection]="selection == extract">
+                        <tr class="d-flex show-child-on-hover" *ngFor="let extract of filteredExtracts" (click)="selection = extract" [class.selection]="selection == extract">
                           <td class="col-1">{{extract.extractId}}</td>
                           <td class="col-4">{{extract.extractName}}</td>
                           <td class="col-6">{{extract.definition.name}}</td>
