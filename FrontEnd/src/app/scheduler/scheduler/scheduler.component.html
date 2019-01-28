@@ -13,8 +13,6 @@
               <!-- "Pulled" button group -->
               <div class="pull-right">
                 <button type="button" class="btn btn-success">Add</button>
-                <button type="button" class="btn btn-success">Edit</button>
-                <button type="button" class="btn btn-danger" (click)="delete(selection)">Delete</button>
               </div>
 
             </div>
@@ -43,22 +41,128 @@
                     <!-- Table -->
                     <table class="table table-striped table-sm table-hover">
                       <thead>
-                        <tr class="d-flex">
-                          <th class="col-1">Id</th>
-                          <th class="col-4">Name</th>
-                          <th class="col-6">Definition</th>
-                          <th class="col-1"></th>
-                        </tr>
+                      <tr class="d-flex">
+                        <th class="col-1">Id</th>
+                        <th class="col-4">Name</th>
+                        <th class="col-6">Definition</th>
+                        <th class="col-1"></th>
+                      </tr>
                       </thead>
                       <tbody>
-                        <tr class="d-flex show-child-on-hover" *ngFor="let extract of filteredExtracts" (click)="selection = extract" [class.selection]="selection == extract">
-                          <td class="col-1">{{extract.extractId}}</td>
-                          <td class="col-4">{{extract.extractName}}</td>
-                          <td class="col-6">{{extract.definition.name}}</td>
-                          <td class="col-1"></td>
-                        </tr>
+                      <tr class="d-flex show-child-on-hover" *ngFor="let extract of filteredExtracts" (click)="selection = extract" [class.selection]="selection == extract">
+                        <td class="col-1">{{extract.extractId}}</td>
+                        <td class="col-4">{{extract.extractName}}</td>
+                        <td class="col-6">{{extract.definition.name}}</td>
+                        <td class="col-1"></td>
+                      </tr>
                       </tbody>
                     </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="card">
+            <div class="card-header">
+              Extract Detail
+
+              <!-- "Pulled" button group -->
+              <div class="pull-right">
+                <button type="button" class="btn btn-success">Edit</button>
+                <button type="button" class="btn btn-danger" (click)="delete(selection)">Delete</button>
+              </div>
+
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="card">
+                        <form ExtractDetails="form" class="container-fluid">
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="control-label">Extract Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Id" [(ngModel)]="selection.extractId" name="extractId" #extractId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Cohort Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Cohort Id" [(ngModel)]="selection.cohortId" name="cohortId" #cohortId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Data Set Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Dataset Id" [(ngModel)]="selection.datasetId" name="datasetId" #datasetId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Definition Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Definition Id" [(ngModel)]="selection.definition.id" name="definition.id" #definition.id>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Definition Project Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Project Id" [(ngModel)]="selection.definition.projectId" name="definition.projectId" #definition.projectId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Definition Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Definition Name" [(ngModel)]="selection.definition.name" name="definition.name" #definition.name>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">File Location Source</label>
+                                <input type="text" disabled class="form-control" placeholder="Source" [(ngModel)]="selection.definition.fileLocationDetails.source" name="definition.fileLocationDetails.source" #definition.fileLocationDetails.source>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">File Location Destination</label>
+                                <input type="text" disabled class="form-control" placeholder="Destination" [(ngModel)]="selection.definition.fileLocationDetails.destination" name="definition.fileLocationDetails.destination" #definition.fileLocationDetails.destination>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">File Location Housekeep</label>
+                                <input type="text" disabled class="form-control" placeholder="Housekeep" [(ngModel)]="selection.definition.fileLocationDetails.housekeep" name="definition.fileLocationDetails.housekeep" #definition.fileLocationDetails.housekeep>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label class="control-label">Extract Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Extract Name" [(ngModel)]="selection.extractName" name="extractName" #extractName>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Code Set Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Code Set Id" [(ngModel)]="selection.codeSetId" name="codeSetId" #codeSetId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Transaction Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Transaction Id" [(ngModel)]="selection.transactionId" name="datasetId" #transactionId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Hostname</label>
+                                <input type="text" disabled class="form-control" placeholder="Hostname" [(ngModel)]="selection.definition.sftpConnectionDetails.hostname" name="definition.sftpConnectionDetails.hostname" #definition.sftpConnectionDetails.hostname>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Port</label>
+                                <input type="text" disabled class="form-control" placeholder="Port" [(ngModel)]="selection.definition.sftpConnectionDetails.port" name="definition.sftpConnectionDetails.port" #definition.sftpConnectionDetails.port>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Username</label>
+                                <input type="text" disabled class="form-control" placeholder="Username" [(ngModel)]="selection.definition.sftpConnectionDetails.username" name="definition.sftpConnectionDetails.username" #definition.sftpConnectionDetails.username>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Host Public Key</label>
+                                <input type="text" disabled class="form-control" placeholder="Host Public Key" [(ngModel)]="selection.definition.sftpConnectionDetails.hostPublicKey" name="definition.sftpConnectionDetails.hostPublicKey" #selection.definition.sftpConnectionDetails.hostPublicKey>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Client Private Key</label>
+                                <input type="text" disabled class="form-control" placeholder="Client Private Key" [(ngModel)]="selection.definition.sftpConnectionDetails.clientPrivateKey" name="definition.sftpConnectionDetails.clientPrivateKey" #selection.definition.sftpConnectionDetails.clientPrivateKey>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Client Private Key Password</label>
+                                <input type="text" disabled class="form-control" placeholder="Client Private KeyPassword" [(ngModel)]="selection.definition.sftpConnectionDetails.clientPrivateKeyPassword" name="definition.sftpConnectionDetails.clientPrivateKeyPassword" #selection.definition.sftpConnectionDetails.clientPrivateKeyPassword>
+                              </div>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

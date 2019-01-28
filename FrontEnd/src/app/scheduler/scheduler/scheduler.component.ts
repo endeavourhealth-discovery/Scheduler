@@ -33,8 +33,8 @@ export class SchedulerComponent implements OnInit {
           for(let i = 0; i < this.extracts.length; i++){
             val = this.extracts[i].definition;
             this.extracts[i].definition = JSON.parse(val);
-            this.selection = this.extracts[0];
             this.filteredExtracts = this.extracts;
+            this.selection = this.filteredExtracts[0];
           }
         },
       );
@@ -55,6 +55,7 @@ export class SchedulerComponent implements OnInit {
           const index = this.extracts.indexOf(item);
           this.extracts.splice(index, 1);
           this.log.success('Extract deleted successfully', item, 'Extract cohort');
+          this.selection = this.extracts[0];
         },
         (error) => this.log.error('The extract could not be deleted. Please try again.', error, 'Delete extract')
       );
@@ -65,6 +66,7 @@ export class SchedulerComponent implements OnInit {
     this.filteredExtracts = this.filteredExtracts.filter(
       extract => extract.extractName.includes(this.searchTerm) || extract.definition.name.includes(this.searchTerm)
     );
+    this.selection = this.filteredExtracts[0];
   }
 
   clearSearch() {
