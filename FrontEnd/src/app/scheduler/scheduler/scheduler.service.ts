@@ -20,4 +20,10 @@ export class SchedulerService {
       .map((response) => response.text());
   }
 
+  saveExtract(edited: Extract, editMode: boolean): Observable<Extract> {
+    let params = new URLSearchParams();
+    params.set('editMode', editMode ? "1":"0");
+    return this.http.post('api/scheduler/extract/save', edited, {search: params})
+      .map((response) => response.json());
+  }
 }

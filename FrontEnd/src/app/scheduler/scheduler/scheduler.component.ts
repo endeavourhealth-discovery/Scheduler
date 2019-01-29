@@ -4,6 +4,8 @@ import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SchedulerService} from './scheduler.service';
 import {Extract} from "./models/Extract";
 import {ToastsManager} from 'ng2-toastr';
+import {ModuleStateService} from "eds-angular4/dist/common";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-record-viewer',
@@ -20,6 +22,8 @@ export class SchedulerComponent implements OnInit {
   constructor(private modal: NgbModal,
               private log: LoggerService,
               private service: SchedulerService,
+              private state: ModuleStateService,
+              private router: Router,
               public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -38,6 +42,16 @@ export class SchedulerComponent implements OnInit {
           }
         },
       );
+  }
+
+  add() {
+    this.state.setState('extractEdit', {extract: null, editMode: false});
+    this.router.navigate(['extractEdit']);
+  }
+
+  edit(item: Extract) {
+    this.state.setState('extractEdit', {extract: item, editMode: true});
+    this.router.navigate(['extractEdit']);
   }
 
   delete(item: Extract) {
@@ -64,7 +78,7 @@ export class SchedulerComponent implements OnInit {
   searchExtracts() {
     this.filteredExtracts = this.extracts;
     this.filteredExtracts = this.filteredExtracts.filter(
-      extract => extract.extractName.includes(this.searchTerm) || extract.definition.name.includes(this.searchTerm)
+      extract => extract.extractName.toUpperCase().includes(this.searchTerm.toUpperCase()) || extract.definition.name.toUpperCase().includes(this.searchTerm.toUpperCase())
     );
     this.selection = this.filteredExtracts[0];
   }

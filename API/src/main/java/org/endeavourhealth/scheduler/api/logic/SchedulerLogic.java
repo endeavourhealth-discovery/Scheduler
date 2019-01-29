@@ -26,8 +26,16 @@ public class SchedulerLogic {
         return ExtractEntity.getAllExtracts();
     }
 
-    public void deleteExtract(String id) throws Exception  {
+    public void deleteExtract(String id) throws Exception {
         ExtractEntity.deleteExtract(Integer.valueOf(id));
     }
 
+    public void saveExtract(ExtractEntity extract, boolean isEdit) throws Exception {
+
+        if (isEdit) {
+            ExtractEntity.updateExtract(extract);
+        } else {
+            ExtractEntity.createExtract(extract);
+        }
+    }
 }

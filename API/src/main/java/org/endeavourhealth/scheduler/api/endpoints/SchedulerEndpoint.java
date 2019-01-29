@@ -4,8 +4,11 @@ import io.astefanutti.metrics.aspectj.Metrics;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import org.endeavourhealth.common.security.annotations.RequiresAdmin;
+import org.endeavourhealth.scheduler.api.json.JsonExtract;
 import org.endeavourhealth.scheduler.api.logic.SchedulerLogic;
 import org.endeavourhealth.scheduler.models.database.ExtractEntity;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,6 +59,38 @@ public class SchedulerEndpoint {
 
         return Response
                 .ok()
+                .build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.saveUser")
+    @Path("/extract/save")
+    @RequiresAdmin
+    @ApiOperation(value = "Saves an extract or updates an existing extract")
+    public Response saveExtract(@Context SecurityContext sc, JsonExtract jsonExtract,
+                             @ApiParam(value = "edit mode") @QueryParam("editMode") String editMode) throws Exception {
+
+        LOG.debug("Save Extract called");
+
+        boolean isEdit = editMode.equals("1");
+        JSONObject definition = new JSONObject(jsonExtract.getDefinition());
+
+        ExtractEntity extract = new ExtractEntity();
+        extract.setExtractId(jsonExtract.getExtractId());
+        extract.setExtractName(jsonExtract.getExtractName());
+        extract.setCohortId(jsonExtract.getCohortId());
+        extract.setCodeSetId(jsonExtract.getCodeSetId());
+        extract.setDatasetId(jsonExtract.getDatasetId());
+        extract.setDefinition(definition.toString());
+        extract.setTransactionId(jsonExtract.getTransactionId());
+
+        new SchedulerLogic().saveExtract(extract, isEdit);
+
+        return Response
+                .ok()
+                .entity(jsonExtract)
                 .build();
     }
 }

@@ -12,7 +12,7 @@
 
               <!-- "Pulled" button group -->
               <div class="pull-right">
-                <button type="button" class="btn btn-success">Add</button>
+                <button type="button" class="btn btn-success" (click)="add()">Add</button>
               </div>
 
             </div>
@@ -70,7 +70,7 @@
 
               <!-- "Pulled" button group -->
               <div class="pull-right">
-                <button type="button" class="btn btn-success">Edit</button>
+                <button type="button" class="btn btn-success" (click)="edit(selection)">Edit</button>
                 <button type="button" class="btn btn-danger" (click)="delete(selection)">Delete</button>
               </div>
 
