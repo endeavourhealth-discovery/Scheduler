@@ -37,9 +37,13 @@ export class SchedulerComponent implements OnInit {
           for(let i = 0; i < this.extracts.length; i++){
             val = this.extracts[i].definition;
             this.extracts[i].definition = JSON.parse(val);
-            this.filteredExtracts = this.extracts;
-            this.selection = this.filteredExtracts[0];
           }
+          if (this.service.getSelectedExtract()) {
+            this.selection = this.service.getSelectedExtract();
+          } else {
+            this.selection = this.extracts[0];
+          }
+          this.filteredExtracts = this.extracts;
         },
       );
   }

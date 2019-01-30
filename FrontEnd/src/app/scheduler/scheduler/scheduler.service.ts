@@ -6,11 +6,21 @@ import {Extract} from "./models/Extract";
 @Injectable()
 export class SchedulerService {
 
+  extract: Extract;
+
   constructor(private http: Http) { }
 
   getList(): Observable<Extract[]> {
     return this.http.get('/api/scheduler/get')
       .map((response) => response.json());
+  }
+
+  getSelectedExtract(): Extract {
+    return this.extract
+  }
+
+  setSelectedExtract(extract: Extract) {
+    this.extract = extract;
   }
 
   deleteExtract(id: any): Observable<any> {
@@ -20,10 +30,11 @@ export class SchedulerService {
       .map((response) => response.text());
   }
 
-  saveExtract(edited: Extract, editMode: boolean): Observable<Extract> {
+  saveExtract(extract: Extract, editMode: boolean): Observable<Extract> {
+    this.setSelectedExtract(extract);
     let params = new URLSearchParams();
     params.set('editMode', editMode ? "1":"0");
-    return this.http.post('api/scheduler/extract/save', edited, {search: params})
+    return this.http.post('api/scheduler/extract/save', extract, {search: params})
       .map((response) => response.json());
   }
 }

@@ -49,7 +49,7 @@
                       </tr>
                       </thead>
                       <tbody>
-                      <tr class="d-flex show-child-on-hover" *ngFor="let extract of filteredExtracts" (click)="selection = extract" [class.selection]="selection == extract">
+                      <tr class="d-flex show-child-on-hover" *ngFor="let extract of filteredExtracts" (click)="selection = extract" [class.selection]="selection.extractId == extract.extractId">
                         <td class="col-1">{{extract.extractId}}</td>
                         <td class="col-4">{{extract.extractName}}</td>
                         <td class="col-6">{{extract.definition.name}}</td>
@@ -89,8 +89,16 @@
                                 <input type="text" disabled class="form-control" placeholder="Id" [(ngModel)]="selection.extractId" name="extractId" #extractId>
                               </div>
                               <div class="form-group">
+                                <label class="control-label">Extract Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Extract Name" [(ngModel)]="selection.extractName" name="extractName" #extractName>
+                              </div>
+                              <div class="form-group">
                                 <label class="control-label">Cohort Id</label>
                                 <input type="text" disabled class="form-control" placeholder="Cohort Id" [(ngModel)]="selection.cohortId" name="cohortId" #cohortId>
+                              </div>
+                              <div class="form-group">
+                                <label class="control-label">Code Set Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Code Set Id" [(ngModel)]="selection.codeSetId" name="codeSetId" #codeSetId>
                               </div>
                               <div class="form-group">
                                 <label class="control-label">Data Set Id</label>
@@ -101,13 +109,19 @@
                                 <input type="text" disabled class="form-control" placeholder="Definition Id" [(ngModel)]="selection.definition.id" name="definition.id" #definition.id>
                               </div>
                               <div class="form-group">
+                                <label class="control-label">Definition Name</label>
+                                <input type="text" disabled class="form-control" placeholder="Definition Name" [(ngModel)]="selection.definition.name" name="definition.name" #definition.name>
+                              </div>
+                              <div class="form-group">
                                 <label class="control-label">Definition Project Id</label>
                                 <input type="text" disabled class="form-control" placeholder="Project Id" [(ngModel)]="selection.definition.projectId" name="definition.projectId" #definition.projectId>
                               </div>
                               <div class="form-group">
-                                <label class="control-label">Definition Name</label>
-                                <input type="text" disabled class="form-control" placeholder="Definition Name" [(ngModel)]="selection.definition.name" name="definition.name" #definition.name>
+                                <label class="control-label">Transaction Id</label>
+                                <input type="text" disabled class="form-control" placeholder="Transaction Id" [(ngModel)]="selection.transactionId" name="transactionId" #transactionId>
                               </div>
+                            </div>
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label class="control-label">File Location Source</label>
                                 <input type="text" disabled class="form-control" placeholder="Source" [(ngModel)]="selection.definition.fileLocationDetails.source" name="definition.fileLocationDetails.source" #definition.fileLocationDetails.source>
@@ -119,20 +133,6 @@
                               <div class="form-group">
                                 <label class="control-label">File Location Housekeep</label>
                                 <input type="text" disabled class="form-control" placeholder="Housekeep" [(ngModel)]="selection.definition.fileLocationDetails.housekeep" name="definition.fileLocationDetails.housekeep" #definition.fileLocationDetails.housekeep>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label class="control-label">Extract Name</label>
-                                <input type="text" disabled class="form-control" placeholder="Extract Name" [(ngModel)]="selection.extractName" name="extractName" #extractName>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label">Code Set Id</label>
-                                <input type="text" disabled class="form-control" placeholder="Code Set Id" [(ngModel)]="selection.codeSetId" name="codeSetId" #codeSetId>
-                              </div>
-                              <div class="form-group">
-                                <label class="control-label">Transaction Id</label>
-                                <input type="text" disabled class="form-control" placeholder="Transaction Id" [(ngModel)]="selection.transactionId" name="datasetId" #transactionId>
                               </div>
                               <div class="form-group">
                                 <label class="control-label">Hostname</label>

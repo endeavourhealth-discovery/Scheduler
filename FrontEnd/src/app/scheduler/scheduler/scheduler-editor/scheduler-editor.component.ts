@@ -126,7 +126,7 @@ export class SchedulerEditorComponent implements OnInit {
 
   close(withConfirm: boolean) {
     if (withConfirm)
-      MessageBoxDialog.open(this.modal, "Add/Edit Extract", "Any unsaved changes will be lost. Do you want to close without saving?", "Close without saving", "Continue editing")
+      MessageBoxDialog.open(this.modal, this.dialogTitle, "Any unsaved changes will be lost. Do you want to close without saving?", "Close without saving", "Continue editing")
         .result.then(
         (result) => this.location.back(),
         (reason) => {}
