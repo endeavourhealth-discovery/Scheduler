@@ -30,12 +30,13 @@ public class SchedulerLogic {
         ExtractEntity.deleteExtract(Integer.valueOf(id));
     }
 
-    public void saveExtract(ExtractEntity extract, boolean isEdit) throws Exception {
+    public ExtractEntity saveExtract(ExtractEntity extract, boolean isEdit) throws Exception {
 
         if (isEdit) {
-            ExtractEntity.updateExtract(extract);
+            extract = ExtractEntity.updateExtract(extract);
         } else {
-            ExtractEntity.createExtract(extract);
+            extract = ExtractEntity.createExtract(extract);
         }
+        return extract;
     }
 }

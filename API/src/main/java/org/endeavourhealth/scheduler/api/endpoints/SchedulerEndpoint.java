@@ -86,7 +86,8 @@ public class SchedulerEndpoint {
         extract.setDefinition(definition.toString());
         extract.setTransactionId(jsonExtract.getTransactionId());
 
-        new SchedulerLogic().saveExtract(extract, isEdit);
+        extract = new SchedulerLogic().saveExtract(extract, isEdit);
+        jsonExtract.setExtractId(extract.getExtractId());
 
         return Response
                 .ok()

@@ -113,6 +113,7 @@ export class SchedulerEditorComponent implements OnInit {
         .subscribe(
           (response) => {
             this.selection = response;
+            this.schedulerService.setSelectedExtract(this.selection);
             if (close) {
               this.close(!close);
             } else {
@@ -136,7 +137,59 @@ export class SchedulerEditorComponent implements OnInit {
   }
 
   validateFormInput(){
-    let result = true;
-    return result;
+    if (this.selection.extractName.trim() == '') {
+      this.log.warning('Extract Name must not be blank');
+      this.extractNameBox.nativeElement.focus();
+      return false;
+    } else if (isNaN(this.selection.cohortId) || this.selection.cohortId < 1) {
+      this.log.warning('Cohort Id must be a number greater than 0');
+      this.cohortIdBox.nativeElement.focus();
+      return false;
+    } else if (isNaN(this.selection.codeSetId) || this.selection.codeSetId < 1) {
+      this.log.warning('Code Set Id must be a number greater than 0');
+      this.codeSetIdBox.nativeElement.focus();
+      return false;
+    } else if (isNaN(this.selection.datasetId) || this.selection.datasetId < 1) {
+      this.log.warning('Data Set Id must be a number greater than 0');
+      this.datasetIdBox.nativeElement.focus();
+      return false;
+    } else if (isNaN(this.selection.definition.id) || this.selection.definition.id < 1) {
+      this.log.warning('Definition Id must be a number greater than 0');
+      this.idBox.nativeElement.focus();
+      return false;
+    } else if (this.selection.definition.name.trim() == '') {
+      this.log.warning('Definition Name must not be blank');
+      this.nameBox.nativeElement.focus();
+      return false;
+    } else if (this.selection.definition.projectId.trim() == '') {
+      this.log.warning('Project Id must not be blank');
+      this.projectIdBox.nativeElement.focus();
+      return false;
+    } else if (this.editMode && isNaN(this.selection.transactionId)) {
+      this.log.warning('Transaction Id must be a number');
+      this.transactionIdBox.nativeElement.focus();
+      return false;
+    } else if (this.selection.definition.fileLocationDetails.source.trim() == '') {
+      this.log.warning('File Location Source must not be blank');
+      this.sourceBox.nativeElement.focus();
+      return false;
+    } else if (this.selection.definition.fileLocationDetails.destination.trim() == '') {
+      this.log.warning('File Location Destination must not be blank');
+      this.destinationBox.nativeElement.focus();
+      return false;
+    } else if (this.selection.definition.fileLocationDetails.housekeep.trim() == '') {
+      this.log.warning('File Location Housekeep must not be blank');
+      this.housekeepBox.nativeElement.focus();
+      return false;
+    } else if (this.selection.definition.sftpConnectionDetails.hostname.trim() == '') {
+      this.log.warning('Hostname must not be blank');
+      this.hostnameBox.nativeElement.focus();
+      return false;
+    } else if (isNaN(this.selection.definition.sftpConnectionDetails.port)) {
+      this.log.warning('Port must be a number');
+      this.portBox.nativeElement.focus();
+      return false;
+    }
+    return true;
   }
 }
