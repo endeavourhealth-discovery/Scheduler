@@ -30,6 +30,7 @@ export class SchedulerEditorComponent implements OnInit {
   @ViewChild('codeSetId') codeSetIdBox;
   @ViewChild('datasetId') datasetIdBox;
   @ViewChild('transactionId') transactionIdBox;
+  @ViewChild('cron') cronBox;
 
   @ViewChild('definition.name') nameBox;
   @ViewChild('definition.id') idBox;
@@ -86,6 +87,7 @@ export class SchedulerEditorComponent implements OnInit {
         datasetId: 0,
         definition: definition,
         transactionId: 0,
+        cron: '',
       } as Extract;
     }
     else {
@@ -98,7 +100,8 @@ export class SchedulerEditorComponent implements OnInit {
         codeSetId: this.selection.codeSetId,
         datasetId: this.selection.datasetId,
         definition: this.selection.definition,
-        transactionId: 0,
+        transactionId: this.selection.transactionId,
+        cron: this.selection.cron,
       } as Extract;
     }
   }
@@ -123,6 +126,17 @@ export class SchedulerEditorComponent implements OnInit {
           (error) => this.log.error('Extract details could not be saved. Please try again.', error, 'Save extract details')
         );
     }
+  }
+
+  validateCron() {
+    this.schedulerService.validateCron(this.selection)
+      .subscribe(
+        (response) => {
+          this.schedulerService.setSelectedExtract(this.selection);
+          this.log.success(response, null, "Cron Expression")
+        },
+        (error) => this.log.error('Extract details could not be saved. Please try again.', error, 'Save extract details')
+      );
   }
 
   close(withConfirm: boolean) {

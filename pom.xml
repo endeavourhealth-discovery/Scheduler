@@ -28,6 +28,7 @@
         <keycloak.version>2.0.0.Final</keycloak.version>
         <servlet.version>3.1.0</servlet.version>
         <json.version>20180813</json.version>
+        <cron.utils.version>7.0.5</cron.utils.version>
 
         <maven-sonar-plugin.version>3.5.0.1254</maven-sonar-plugin.version>
 

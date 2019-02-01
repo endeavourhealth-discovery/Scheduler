@@ -9,6 +9,7 @@ public class JsonExtract {
     private Integer datasetId = null;
     private JsonDefinition definition = null;
     private Long transactionId = null;
+    private String cron = null;
 
     public Integer getExtractId() {
         return extractId;
@@ -65,4 +66,13 @@ public class JsonExtract {
     public void setTransactionId(Long transactionId) {
         this.transactionId = transactionId;
     }
+
+    public String getCron() {
+        return cron;
+    }
+
+    public void setCron(String cron) {
+        this.cron = cron;
+    }
+
 }

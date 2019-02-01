@@ -65,7 +65,7 @@ public class SchedulerEndpoint {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.saveUser")
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.save")
     @Path("/extract/save")
     @RequiresAdmin
     @ApiOperation(value = "Saves an extract or updates an existing extract")
@@ -85,6 +85,7 @@ public class SchedulerEndpoint {
         extract.setDatasetId(jsonExtract.getDatasetId());
         extract.setDefinition(definition.toString());
         extract.setTransactionId(jsonExtract.getTransactionId());
+        extract.setCron(jsonExtract.getCron());
 
         extract = new SchedulerLogic().saveExtract(extract, isEdit);
         jsonExtract.setExtractId(extract.getExtractId());
@@ -92,6 +93,25 @@ public class SchedulerEndpoint {
         return Response
                 .ok()
                 .entity(jsonExtract)
+                .build();
+    }
+
+    @POST
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.validate")
+    @Path("/extract/validate")
+    @RequiresAdmin
+    @ApiOperation(value = "Saves an extract or updates an existing extract")
+    public Response validate(@Context SecurityContext sc, JsonExtract jsonExtract) throws Exception {
+
+        LOG.debug("Validate Cron called");
+
+        String description = new SchedulerLogic().describeCron(jsonExtract.getCron());
+
+        return Response
+                .ok()
+                .entity(description)
                 .build();
     }
 }

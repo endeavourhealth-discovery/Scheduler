@@ -54,11 +54,13 @@ export class SchedulerComponent implements OnInit {
   }
 
   edit(item: Extract) {
+    this.service.setSelectedExtract(item);
     this.state.setState('extractEdit', {extract: item, editMode: true});
     this.router.navigate(['extractEdit']);
   }
 
   delete(item: Extract) {
+    this.service.setSelectedExtract(item);
     MessageBoxDialog.open(this.modal, 'Delete extract', 'Are you sure that you want to delete <b>' + item.extractName + '</b>?', 'Delete extract', 'Cancel')
       .result.then(
       () => this.doDelete(item),
@@ -72,7 +74,7 @@ export class SchedulerComponent implements OnInit {
         () => {
           const index = this.extracts.indexOf(item);
           this.extracts.splice(index, 1);
-          this.log.success('Extract deleted successfully', item, 'Extract cohort');
+          this.log.success('Extract deleted successfully', item, 'Extract');
           this.selection = this.extracts[0];
         },
         (error) => this.log.error('The extract could not be deleted. Please try again.', error, 'Delete extract')

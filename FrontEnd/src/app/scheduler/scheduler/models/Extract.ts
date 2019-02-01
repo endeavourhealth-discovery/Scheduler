@@ -8,6 +8,7 @@ export class Extract {
   datasetId: number;
   definition: Definition;
   transactionId: number;
+  cron: string;
 
   constructor() {
     this.extractId = 0;
@@ -17,5 +18,6 @@ export class Extract {
     this.datasetId = 0;
     this.definition = new Definition();
     this.transactionId = 0;
+    this.cron = '';
   }
 }
