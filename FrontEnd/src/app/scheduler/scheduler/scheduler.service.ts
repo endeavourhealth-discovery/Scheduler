@@ -39,7 +39,6 @@ export class SchedulerService {
   }
 
   validateCron(extract: Extract): Observable<string> {
-    this.setSelectedExtract(extract);
     let params = new URLSearchParams();
     return this.http.post('api/scheduler/extract/validate', extract, {search: params})
       .map((response) => response.text());

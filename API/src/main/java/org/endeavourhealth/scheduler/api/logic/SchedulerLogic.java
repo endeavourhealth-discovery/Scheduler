@@ -59,7 +59,9 @@ public class SchedulerLogic {
         CronDefinition cronDefinition =
                 CronDefinitionBuilder.instanceDefinitionFor(QUARTZ);
         CronParser parser = new CronParser(cronDefinition);
-        parser.parse(extract.getCron());
+        if (extract.getCron() != null && extract.getCron().length() > 0) {
+            parser.parse(extract.getCron());
+        }
 
         if (isEdit) {
             extract = ExtractEntity.updateExtract(extract);

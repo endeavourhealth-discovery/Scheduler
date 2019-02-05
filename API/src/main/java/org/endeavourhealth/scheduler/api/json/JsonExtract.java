@@ -10,6 +10,7 @@ public class JsonExtract {
     private JsonDefinition definition = null;
     private Long transactionId = null;
     private String cron = null;
+    private Boolean clearCohortEveryRun = null;
 
     public Integer getExtractId() {
         return extractId;
@@ -73,6 +74,14 @@ public class JsonExtract {
 
     public void setCron(String cron) {
         this.cron = cron;
+    }
+
+    public Boolean getClearCohortEveryRun() {
+        return clearCohortEveryRun;
+    }
+
+    public void setClearCohortEveryRun(Boolean clearCohortEveryRun) {
+        this.clearCohortEveryRun= clearCohortEveryRun;
     }
 
 }

@@ -162,6 +162,9 @@
                                 <label class="control-label">Client Private Key Password</label>
                                 <input type="text" disabled class="form-control" placeholder="Client Private KeyPassword" [(ngModel)]="selection.definition.sftpConnectionDetails.clientPrivateKeyPassword" name="definition.sftpConnectionDetails.clientPrivateKeyPassword" #selection.definition.sftpConnectionDetails.clientPrivateKeyPassword>
                               </div>
+                              <div class="pull-left align-content-center">
+                                <input type="checkbox" disabled [(ngModel)]="selection.clearCohortEveryRun" id="chkClearCohortEveryRun" name="clearCohortEveryRun"><label class="control-label align-content-center">&nbsp;&nbsp;Clear Cohort</label>
+                              </div>
                             </div>
                           </div>
                         </form>

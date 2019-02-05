@@ -86,6 +86,11 @@ public class SchedulerEndpoint {
         extract.setDefinition(definition.toString());
         extract.setTransactionId(jsonExtract.getTransactionId());
         extract.setCron(jsonExtract.getCron());
+        if (jsonExtract.getClearCohortEveryRun()) {
+            extract.setClearCohortEveryRun((byte) 1);
+        } else {
+            extract.setClearCohortEveryRun((byte) 0);
+        }
 
         extract = new SchedulerLogic().saveExtract(extract, isEdit);
         jsonExtract.setExtractId(extract.getExtractId());

@@ -9,6 +9,7 @@ export class Extract {
   definition: Definition;
   transactionId: number;
   cron: string;
+  clearCohortEveryRun: boolean;
 
   constructor() {
     this.extractId = 0;
@@ -19,5 +20,6 @@ export class Extract {
     this.definition = new Definition();
     this.transactionId = 0;
     this.cron = '';
+    this.clearCohortEveryRun = false;
   }
 }

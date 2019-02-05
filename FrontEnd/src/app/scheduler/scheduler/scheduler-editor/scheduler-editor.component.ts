@@ -102,6 +102,7 @@ export class SchedulerEditorComponent implements OnInit {
         definition: this.selection.definition,
         transactionId: this.selection.transactionId,
         cron: this.selection.cron,
+        clearCohortEveryRun: this.selection.clearCohortEveryRun,
       } as Extract;
     }
   }
@@ -132,7 +133,6 @@ export class SchedulerEditorComponent implements OnInit {
     this.schedulerService.validateCron(this.selection)
       .subscribe(
         (response) => {
-          this.schedulerService.setSelectedExtract(this.selection);
           this.log.success(response, null, "Cron Expression")
         },
         (error) => this.log.error('Extract details could not be saved. Please try again.', error, 'Save extract details')
