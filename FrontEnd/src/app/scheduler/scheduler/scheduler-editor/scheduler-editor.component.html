@@ -32,6 +32,10 @@
                       <label class="control-label required-field">Cohort Id</label>
                       <input type="text" class="form-control" placeholder="Cohort Id" [(ngModel)]="selection.cohortId" name="cohortId" #cohortId>
                     </div>
+                    <div>
+                      <label class="control-label align-content-center">Clear Cohort Every Extract&nbsp;&nbsp;</label><input type="checkbox" [(ngModel)]="selection.clearCohortEveryRun" id="chkClearCohortEveryRun" name="clearCohortEveryRun">
+                    </div>
+                    <br/>
                     <div class="form-group">
                       <label class="control-label required-field">Code Set Id</label>
                       <input type="text" class="form-control" placeholder="Code Set Id" [(ngModel)]="selection.codeSetId" name="codeSetId" #codeSetId>
@@ -93,9 +97,6 @@
                     <div class="form-group">
                       <label class="control-label">Client Private Key Password</label>
                       <input type="text" class="form-control" placeholder="Client Private KeyPassword" [(ngModel)]="selection.definition.sftpConnectionDetails.clientPrivateKeyPassword" name="definition.sftpConnectionDetails.clientPrivateKeyPassword" #selection.definition.sftpConnectionDetails.clientPrivateKeyPassword>
-                    </div>
-                    <div class="pull-left align-content-center">
-                      <input type="checkbox" [(ngModel)]="selection.clearCohortEveryRun" id="chkClearCohortEveryRun" name="clearCohortEveryRun"><label class="control-label align-content-center">&nbsp;&nbsp;Clear Cohort</label>
                     </div>
                   </div>
                 </div>
