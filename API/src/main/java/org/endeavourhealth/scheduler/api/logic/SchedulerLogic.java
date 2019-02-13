@@ -1,7 +1,6 @@
 package org.endeavourhealth.scheduler.api.logic;
 
 import com.cronutils.descriptor.CronDescriptor;
-import com.cronutils.model.Cron;
 import com.cronutils.model.definition.CronDefinition;
 import com.cronutils.model.definition.CronDefinitionBuilder;
 import com.cronutils.parser.CronParser;
@@ -14,7 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.util.List;
 import java.util.Locale;
 
-import static com.cronutils.model.CronType.QUARTZ;
+import static com.cronutils.model.CronType.UNIX;
 
 public class SchedulerLogic {
 
@@ -41,7 +40,7 @@ public class SchedulerLogic {
     public String describeCron(String cron) {
 
         CronDefinition cronDefinition =
-                CronDefinitionBuilder.instanceDefinitionFor(QUARTZ);
+                CronDefinitionBuilder.instanceDefinitionFor(UNIX);
         CronParser parser = new CronParser(cronDefinition);
         CronDescriptor descriptor = CronDescriptor.instance(Locale.UK);
 
@@ -57,7 +56,7 @@ public class SchedulerLogic {
     public ExtractEntity saveExtract(ExtractEntity extract, boolean isEdit) throws Exception {
 
         CronDefinition cronDefinition =
-                CronDefinitionBuilder.instanceDefinitionFor(QUARTZ);
+                CronDefinitionBuilder.instanceDefinitionFor(UNIX);
         CronParser parser = new CronParser(cronDefinition);
         if (extract.getCron() != null && extract.getCron().length() > 0) {
             parser.parse(extract.getCron());

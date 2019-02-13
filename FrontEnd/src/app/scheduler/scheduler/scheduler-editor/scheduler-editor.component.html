@@ -24,9 +24,8 @@
                       <input type="text" class="form-control" placeholder="Extract Name" [(ngModel)]="selection.extractName" name="extractName" #extractName>
                     </div>
                     <div class="form-group">
-                      <label class="control-label">Cron Timing</label>
+                      <label class="control-label">Cron Timing</label>&nbsp;&nbsp;<button type="button" class="btn btn-success" (click)="validateCron()">Validate</button>
                       <input type="text" class="form-control" placeholder="Cron Timing" [(ngModel)]="selection.cron" name="cron" #cron>
-                      <button type="button" class="btn btn-success" (click)="validateCron()">Validate</button>
                     </div>
                     <div class="form-group">
                       <label class="control-label required-field">Cohort Id</label>
