@@ -62,7 +62,7 @@
     <!-- startup class, initializes config manager -->
     <context-param>
         <param-name>app_id</param-name>
-        <param-value>scheduler-ui</param-value>
+        <param-value>scheduler</param-value>
     </context-param>
     <listener>
         <listener-class>
