@@ -1,4 +1,4 @@
-import {Definition} from "./Definition";
+import {Definition} from './Definition';
 
 export class Extract {
   extractId: number;

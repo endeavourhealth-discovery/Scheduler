@@ -1,15 +1,15 @@
 import {Component, Input, OnInit, ViewChild, ViewChildren, ViewContainerRef} from '@angular/core';
 import {Location} from '@angular/common';
-import {Extract} from "../models/Extract";
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
-import {LoggerService, MessageBoxDialog} from "eds-angular4";
+import {Extract} from '../models/Extract';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {LoggerService, MessageBoxDialog} from 'eds-angular4';
 import {ModuleStateService} from 'eds-angular4/dist/common';
-import {Router} from "@angular/router";
-import {SchedulerService} from "../scheduler.service";
+import {Router} from '@angular/router';
+import {SchedulerService} from '../scheduler.service';
 import {ToastsManager} from 'ng2-toastr';
-import {Definition} from "../models/Definition";
-import {FileLocationDetails} from "../models/FileLocationDetails";
-import {SftpConnectionDetails} from "../models/SftpConnectionDetails";
+import {Definition} from '../models/Definition';
+import {FileLocationDetails} from '../models/FileLocationDetails';
+import {SftpConnectionDetails} from '../models/SftpConnectionDetails';
 
 @Component({
   selector: 'app-scheduler-editor',
@@ -58,7 +58,7 @@ export class SchedulerEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let screen = this.state.getState('extractEdit');
+    const screen = this.state.getState('extractEdit');
     if (screen == null) {
       this.selection = {} as Extract;
       this.router.navigate(['extract']);
@@ -71,11 +71,11 @@ export class SchedulerEditorComponent implements OnInit {
     this.selfEdit = screen.selfEdit;
 
     if (!this.editMode) {
-      this.dialogTitle = "Add extract";
+      this.dialogTitle = 'Add extract';
 
-      let fileLocationDetails = new FileLocationDetails();
-      let sftpConnectionDetails = new SftpConnectionDetails();
-      let definition = new Definition();
+      const fileLocationDetails = new FileLocationDetails();
+      const sftpConnectionDetails = new SftpConnectionDetails();
+      const definition = new Definition();
       definition.fileLocationDetails = fileLocationDetails;
       definition.sftpConnectionDetails = sftpConnectionDetails;
 
@@ -89,9 +89,8 @@ export class SchedulerEditorComponent implements OnInit {
         transactionId: 0,
         cron: '',
       } as Extract;
-    }
-    else {
-      this.dialogTitle = "Edit extract";
+    } else {
+      this.dialogTitle = 'Edit extract';
 
       this.selection = {
         extractId: this.selection.extractId,
@@ -107,7 +106,7 @@ export class SchedulerEditorComponent implements OnInit {
     }
   }
 
-  isEditMode(){
+  isEditMode() {
     return this.editMode;
   }
 
@@ -133,25 +132,28 @@ export class SchedulerEditorComponent implements OnInit {
     this.schedulerService.validateCron(this.selection)
       .subscribe(
         (response) => {
-          this.log.success(response, null, "Cron Expression")
+          this.log.success(response, null, 'Cron Expression')
         },
         (error) => this.log.error('Extract details could not be saved. Please try again.', error, 'Save extract details')
       );
   }
 
   close(withConfirm: boolean) {
-    if (withConfirm)
-      MessageBoxDialog.open(this.modal, this.dialogTitle, "Any unsaved changes will be lost. Do you want to close without saving?", "Close without saving", "Continue editing")
+    if (withConfirm) {
+      MessageBoxDialog.open(this.modal, this.dialogTitle, 'Any unsaved changes will be lost. ' +
+          'Do you want to close without saving?', 'Close without saving', 'Continue editing')
         .result.then(
         (result) => this.location.back(),
-        (reason) => {}
+        (reason) => {
+        }
       );
-    else
+    } else {
       this.location.back();
+    }
   }
 
-  validateFormInput(){
-    if (this.selection.extractName.trim() == '') {
+  validateFormInput() {
+    if (this.selection.extractName.trim() === '') {
       this.log.warning('Extract Name must not be blank');
       this.extractNameBox.nativeElement.focus();
       return false;
@@ -171,11 +173,11 @@ export class SchedulerEditorComponent implements OnInit {
       this.log.warning('Definition Id must be a number greater than 0');
       this.idBox.nativeElement.focus();
       return false;
-    } else if (this.selection.definition.name.trim() == '') {
+    } else if (this.selection.definition.name.trim() === '') {
       this.log.warning('Definition Name must not be blank');
       this.nameBox.nativeElement.focus();
       return false;
-    } else if (this.selection.definition.projectId.trim() == '') {
+    } else if (this.selection.definition.projectId.trim() === '') {
       this.log.warning('Project Id must not be blank');
       this.projectIdBox.nativeElement.focus();
       return false;
@@ -183,19 +185,19 @@ export class SchedulerEditorComponent implements OnInit {
       this.log.warning('Transaction Id must be a number');
       this.transactionIdBox.nativeElement.focus();
       return false;
-    } else if (this.selection.definition.fileLocationDetails.source.trim() == '') {
+    } else if (this.selection.definition.fileLocationDetails.source.trim() === '') {
       this.log.warning('File Location Source must not be blank');
       this.sourceBox.nativeElement.focus();
       return false;
-    } else if (this.selection.definition.fileLocationDetails.destination.trim() == '') {
+    } else if (this.selection.definition.fileLocationDetails.destination.trim() === '') {
       this.log.warning('File Location Destination must not be blank');
       this.destinationBox.nativeElement.focus();
       return false;
-    } else if (this.selection.definition.fileLocationDetails.housekeep.trim() == '') {
+    } else if (this.selection.definition.fileLocationDetails.housekeep.trim() === '') {
       this.log.warning('File Location Housekeep must not be blank');
       this.housekeepBox.nativeElement.focus();
       return false;
-    } else if (this.selection.definition.sftpConnectionDetails.hostname.trim() == '') {
+    } else if (this.selection.definition.sftpConnectionDetails.hostname.trim() === '') {
       this.log.warning('Hostname must not be blank');
       this.hostnameBox.nativeElement.focus();
       return false;

@@ -2,10 +2,10 @@ import {Component, OnInit, ViewContainerRef} from '@angular/core';
 import {LoggerService, MessageBoxDialog} from 'eds-angular4';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {SchedulerService} from './scheduler.service';
-import {Extract} from "./models/Extract";
+import {Extract} from './models/Extract';
 import {ToastsManager} from 'ng2-toastr';
-import {ModuleStateService} from "eds-angular4/dist/common";
-import {Router} from "@angular/router";
+import {ModuleStateService} from 'eds-angular4/dist/common';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-record-viewer',
@@ -15,7 +15,7 @@ import {Router} from "@angular/router";
 export class SchedulerComponent implements OnInit {
 
   extracts: Extract[];
-  filteredExtracts : Extract[];
+  filteredExtracts: Extract[];
   selection: Extract;
   searchTerm: string;
 
@@ -33,8 +33,8 @@ export class SchedulerComponent implements OnInit {
       .subscribe(
         result => {
           this.extracts = result;
-          let val:any;
-          for(let i = 0; i < this.extracts.length; i++){
+          let val: any;
+          for (let i = 0; i < this.extracts.length; i++) {
             val = this.extracts[i].definition;
             this.extracts[i].definition = JSON.parse(val);
           }
@@ -61,7 +61,8 @@ export class SchedulerComponent implements OnInit {
 
   delete(item: Extract) {
     this.service.setSelectedExtract(item);
-    MessageBoxDialog.open(this.modal, 'Delete extract', 'Are you sure that you want to delete <b>' + item.extractName + '</b>?', 'Delete extract', 'Cancel')
+    MessageBoxDialog.open(this.modal, 'Delete extract', 'Are you sure that you want to delete <b>' +
+      item.extractName + '</b>?', 'Delete extract', 'Cancel')
       .result.then(
       () => this.doDelete(item),
       () => this.log.info('Delete cancelled')
@@ -84,7 +85,8 @@ export class SchedulerComponent implements OnInit {
   searchExtracts() {
     this.filteredExtracts = this.extracts;
     this.filteredExtracts = this.filteredExtracts.filter(
-      extract => extract.extractName.toUpperCase().includes(this.searchTerm.toUpperCase()) || extract.definition.name.toUpperCase().includes(this.searchTerm.toUpperCase())
+      extract => extract.extractName.toUpperCase().includes(this.searchTerm.toUpperCase()) ||
+        extract.definition.name.toUpperCase().includes(this.searchTerm.toUpperCase())
     );
     this.selection = this.filteredExtracts[0];
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {URLSearchParams, Http} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {Extract} from "./models/Extract";
+import {Extract} from './models/Extract';
 
 @Injectable()
 export class SchedulerService {
@@ -32,14 +32,14 @@ export class SchedulerService {
 
   saveExtract(extract: Extract, editMode: boolean): Observable<Extract> {
     this.setSelectedExtract(extract);
-    let params = new URLSearchParams();
-    params.set('editMode', editMode ? "1":"0");
+    const params = new URLSearchParams();
+    params.set('editMode', editMode ? '1' : '0');
     return this.http.post('api/scheduler/extract/save', extract, {search: params})
       .map((response) => response.json());
   }
 
   validateCron(extract: Extract): Observable<string> {
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     return this.http.post('api/scheduler/extract/validate', extract, {search: params})
       .map((response) => response.text());
   }

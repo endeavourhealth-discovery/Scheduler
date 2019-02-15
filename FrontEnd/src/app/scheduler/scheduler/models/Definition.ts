@@ -1,5 +1,5 @@
-import {FileLocationDetails} from "./FileLocationDetails";
-import {SftpConnectionDetails} from "./SftpConnectionDetails";
+import {FileLocationDetails} from './FileLocationDetails';
+import {SftpConnectionDetails} from './SftpConnectionDetails';
 
 export class Definition {
 
