@@ -3,7 +3,7 @@ import {AbstractMenuProvider} from 'eds-angular4';
 import {MenuOption} from 'eds-angular4/dist/layout/models/MenuOption';
 import {SchedulerComponent} from './scheduler/scheduler/scheduler.component';
 import {Routes} from '@angular/router';
-import {SchedulerEditorComponent} from "./scheduler/scheduler/scheduler-editor/scheduler-editor.component";
+import {SchedulerEditorComponent} from './scheduler/scheduler/scheduler-editor/scheduler-editor.component';
 
 @Injectable()
 export class AppMenuService implements  AbstractMenuProvider {
@@ -28,7 +28,7 @@ export class AppMenuService implements  AbstractMenuProvider {
 
   getMenuOptions(): MenuOption[] {
     return [
-      {caption: 'Scheduler', state: 'Scheduler', icon: 'fa fa-user', role: 'eds-user-manager:user-manager'},
+      {caption: 'Scheduler', state: 'scheduler', icon: 'fa fa-user', role: 'eds-user-manager:user-manager'},
       {caption: 'Configuration', state: 'config', icon: 'fa fa-cogs', role: 'eds-user-manager:user-manager'},
       {caption: 'Delegation', state: 'config', icon: 'fa fa-group', role: 'eds-user-manager:user-manager'},
       {caption: 'Audit', state: 'config', icon: 'fa fa-list', role: 'eds-user-manager:user-manager'}
