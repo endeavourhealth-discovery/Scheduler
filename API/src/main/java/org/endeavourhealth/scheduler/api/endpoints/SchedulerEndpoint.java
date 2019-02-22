@@ -65,7 +65,7 @@ public class SchedulerEndpoint {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.save")
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.Extract.Save.Post")
     @Path("/extract/save")
     @RequiresAdmin
     @ApiOperation(value = "Saves an extract or updates an existing extract")
@@ -104,7 +104,7 @@ public class SchedulerEndpoint {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.validate")
+    @Timed(absolute = true, name="Scheduler.SchedulerEndpoint.Extract.Validate.Post")
     @Path("/extract/validate")
     @RequiresAdmin
     @ApiOperation(value = "Saves an extract or updates an existing extract")
