@@ -77,6 +77,7 @@ export class SchedulerComponent implements OnInit {
           this.extracts.splice(index, 1);
           this.log.success('Extract deleted successfully', item, 'Extract');
           this.selection = this.extracts[0];
+          this.service.setSelectedExtract(this.extracts[0]);
         },
         (error) => this.log.error('The extract could not be deleted. Please try again.', error, 'Delete extract')
       );
