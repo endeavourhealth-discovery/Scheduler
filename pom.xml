@@ -28,9 +28,9 @@
         <node.version>v6.10.1</node.version>
         <swagger.version>1.5.13</swagger.version>
 
-        <eds-api.version>1.30-SNAPSHOT</eds-api.version>
-        <eds-core.version>1.339-SNAPSHOT</eds-core.version>
-        <eds-security.version>1.12-SNAPSHOT</eds-security.version>
+        <eds-api.version>1.74-SNAPSHOT</eds-api.version>
+        <eds-core.version>1.787-SNAPSHOT</eds-core.version>
+        <eds-security.version>1.81-SNAPSHOT</eds-security.version>
         <eds-datagenerator.scheduler.version>1.0-SNAPSHOT</eds-datagenerator.scheduler.version>
 
         <aspectj.version>1.8.9</aspectj.version>
